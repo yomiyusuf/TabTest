@@ -1,7 +1,8 @@
-package com.yomi.tabtest
+package com.yomi.tabtest.ui.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.yomi.tabtest.R
 
 class MainActivity : AppCompatActivity() {
 
