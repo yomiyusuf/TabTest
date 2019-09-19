@@ -15,6 +15,8 @@ class ListViewModel:BaseViewModel(){
     lateinit var listApi: ListApi
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage:MutableLiveData<Int> = MutableLiveData()
+    val retryClickListener = View.OnClickListener { loadListResponse() }
 
     private lateinit var subscription: Disposable
 
