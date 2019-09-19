@@ -1,8 +1,10 @@
 package com.yomi.tabtest.ui.list
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.yomi.tabtest.BuildConfig
+import com.yomi.tabtest.R
 import com.yomi.tabtest.base.BaseViewModel
 import com.yomi.tabtest.network.ListApi
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,10 +40,13 @@ class ListViewModel:BaseViewModel(){
 
     private fun onRetrieveListStart(){
         loadingVisibility.value = View.VISIBLE
+        errorMessage.value = null
     }
 
     private fun onRetrieveListFinish(){
         loadingVisibility.value = View.GONE
+
+        //Log.e("NetworkModule", retrofit.create(ListApi::class.java).toString())
     }
 
     private fun onRetrieveListSuccess(){
@@ -49,7 +54,7 @@ class ListViewModel:BaseViewModel(){
     }
 
     private fun onRetrieveListError(){
-
+        errorMessage.value = R.string.network_error
     }
 
     override fun onCleared() {

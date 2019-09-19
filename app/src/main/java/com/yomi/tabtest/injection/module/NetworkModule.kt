@@ -1,5 +1,6 @@
 package com.yomi.tabtest.injection.module
 
+import android.util.Log
 import com.yomi.tabtest.network.ListApi
 import com.yomi.tabtest.util.BASE_URL
 import dagger.Module
@@ -21,7 +22,7 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun providePostApi(retrofit: Retrofit): ListApi {
+    internal fun provideListApi(retrofit: Retrofit): ListApi {
         return retrofit.create(ListApi::class.java)
     }
 
