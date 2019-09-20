@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.yomi.tabtest.BuildConfig
 import com.yomi.tabtest.R
 import com.yomi.tabtest.base.BaseViewModel
+import com.yomi.tabtest.model.ListResponse
 import com.yomi.tabtest.network.ListApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -20,6 +21,8 @@ class ListViewModel:BaseViewModel(){
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
     val retryClickListener = View.OnClickListener { loadListResponse() }
 
+    val cityListAdapter: CityListAdapter = CityListAdapter()
+
     private lateinit var subscription: Disposable
 
     init {
@@ -33,8 +36,8 @@ class ListViewModel:BaseViewModel(){
             .doOnSubscribe { onRetrieveListStart() }
             .doOnTerminate { onRetrieveListFinish() }
             .subscribe(
-                { onRetrieveListSuccess() },
-                { onRetrieveListError() }
+                {result -> onRetrieveListSuccess(result)  },
+                { err -> onRetrieveListError(err) }
             )
     }
 
@@ -49,11 +52,12 @@ class ListViewModel:BaseViewModel(){
         //Log.e("NetworkModule", retrofit.create(ListApi::class.java).toString())
     }
 
-    private fun onRetrieveListSuccess(){
-
+    private fun onRetrieveListSuccess(result: ListResponse) {
+        cityListAdapter.updateCityList(result.list)
     }
 
-    private fun onRetrieveListError(){
+    private fun onRetrieveListError(err: Throwable) {
+        Log.e("Error", err.message)
         errorMessage.value = R.string.network_error
     }
 

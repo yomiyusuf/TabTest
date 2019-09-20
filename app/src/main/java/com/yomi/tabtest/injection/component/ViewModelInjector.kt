@@ -10,9 +10,9 @@ import javax.inject.Singleton
 interface ViewModelInjector {
     /**
      * Injects required dependencies into the specified ListViewModel.
-     * @param postListViewModel ListViewModel in which to inject the dependencies
+     * @param cityListViewModel ListViewModel in which to inject the dependencies
      */
-    fun inject(postListViewModel: ListViewModel)
+    fun inject(cityListViewModel: ListViewModel)
 
     @Component.Builder
     interface Builder {

@@ -1,6 +1,5 @@
 package com.yomi.tabtest.injection.module
 
-import android.util.Log
 import com.yomi.tabtest.network.ListApi
 import com.yomi.tabtest.util.BASE_URL
 import dagger.Module
