@@ -1,6 +1,7 @@
 package com.yomi.tabtest.injection.module
 
 import com.yomi.tabtest.network.ListApi
+import com.yomi.tabtest.network.WeatherApi
 import com.yomi.tabtest.util.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,18 @@ object NetworkModule {
     @JvmStatic
     internal fun provideListApi(retrofit: Retrofit): ListApi {
         return retrofit.create(ListApi::class.java)
+    }
+
+    /**
+     * Provides the City weather service implementation.
+     * @param retrofit the Retrofit object used to instantiate the service
+     * @return the CityDetail service implementation.
+     */
+    @Provides
+    @Reusable
+    @JvmStatic
+    internal fun provideWeatherApi(retrofit: Retrofit): WeatherApi {
+        return retrofit.create(WeatherApi::class.java)
     }
 
     /**
