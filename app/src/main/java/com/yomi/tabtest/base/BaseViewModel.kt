@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.yomi.tabtest.injection.component.DaggerViewModelInjector
 import com.yomi.tabtest.injection.component.ViewModelInjector
 import com.yomi.tabtest.injection.module.NetworkModule
+import com.yomi.tabtest.ui.cityDetails.WeatherViewModel
 import com.yomi.tabtest.ui.list.ListViewModel
 
 abstract class BaseViewModel: ViewModel(){
@@ -19,6 +20,7 @@ abstract class BaseViewModel: ViewModel(){
     private fun inject(){
         when (this) {
             is ListViewModel -> injector.inject(this)
+            is WeatherViewModel -> injector.inject(this)
         }
     }
 }

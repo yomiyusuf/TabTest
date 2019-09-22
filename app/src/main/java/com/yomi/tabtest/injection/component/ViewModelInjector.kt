@@ -1,6 +1,7 @@
 package com.yomi.tabtest.injection.component
 
 import com.yomi.tabtest.injection.module.NetworkModule
+import com.yomi.tabtest.ui.cityDetails.WeatherViewModel
 import com.yomi.tabtest.ui.list.ListViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -13,6 +14,12 @@ interface ViewModelInjector {
      * @param cityListViewModel ListViewModel in which to inject the dependencies
      */
     fun inject(cityListViewModel: ListViewModel)
+
+    /**
+     * Injects required dependencies into the specified WeatherViewModel.
+     * @param weatherViewModel WeatherViewModel in which to inject the dependencies
+     */
+    fun inject(weatherViewModel: WeatherViewModel)
 
     @Component.Builder
     interface Builder {

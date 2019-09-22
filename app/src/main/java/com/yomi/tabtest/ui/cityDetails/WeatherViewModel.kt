@@ -18,7 +18,7 @@ class WeatherViewModel(val cityId: String): BaseViewModel() {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
-    val cityDetail: MutableLiveData<CityDetail> = MutableLiveData()
+    val cityDetail: MutableLiveData<String> = MutableLiveData()
     val retryClickListener = View.OnClickListener { loadWeatherResponse() }
 
     private lateinit var subscription: Disposable
@@ -35,7 +35,7 @@ class WeatherViewModel(val cityId: String): BaseViewModel() {
             .doOnTerminate { onRetrieveWeatherFinish() }
             .subscribe(
                 {result -> onRetrieveWeatherSuccess(result)  },
-                { err -> onRetrieveListError(err) }
+                { onRetrieveWeatherError() }
             )
     }
 
@@ -49,10 +49,10 @@ class WeatherViewModel(val cityId: String): BaseViewModel() {
     }
 
     private fun onRetrieveWeatherSuccess(result: CityDetail) {
-        cityDetail.value = result
+        cityDetail.value = result.toString()
     }
 
-    private fun onRetrieveListError(err: Throwable) {
+    private fun onRetrieveWeatherError() {
         errorMessage.value = R.string.network_error
     }
 
